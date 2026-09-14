@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "常用 agent skills 集合：把事搞定、写文章",
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   "plugins": [
     {
