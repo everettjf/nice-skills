@@ -1,0 +1,23 @@
+{
+  "name": "nice-skills",
+  "owner": {
+    "name": "Everett",
+    "url": "https://github.com/everettjf"
+  },
+  "metadata": {
+    "description": "常用 agent skills 集合：把事搞定、写文章",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "nice-skills",
+      "description": "两个日常 skill：get-it-done（落地交付，GitHub 项目保证 CI 全绿并提 PR）和 write-article（客观朴素的科普/描述性文章，支持微信公众号图文）",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/get-it-done",
+        "./skills/write-article"
+      ]
+    }
+  ]
+}
