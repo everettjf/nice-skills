@@ -37,6 +37,37 @@ npx skills add everettjf/nice-skills --list
 
 手动安装：把需要的目录复制到 agent 的 skills 目录即可，常见位置是 `~/.claude/skills/`、`~/.agents/skills/`，或项目内的 `.claude/skills/`。目录结构必须保持 `<skill-name>/SKILL.md`。
 
+## 更新
+
+```bash
+npx skills list                  # 查看已安装的 skills 和来源
+npx skills update                # 更新全部（交互选择项目级 / 全局）
+npx skills update get-it-done    # 只更新某一个
+npx skills update -g             # 只更新全局安装的
+npx skills update -p             # 只更新项目级安装的
+npx skills update -y             # 非交互
+```
+
+更新完成后要**新开一轮会话**，agent 才会重新读取 skill 文件；正在进行的会话里用的还是旧内容。
+
+几点说明：
+
+- `skills-lock.json` 只记录来源和内容哈希，**不锁版本**，所以 `update` 拉的是本仓库默认分支的最新内容。
+- 用本地路径安装的（`npx skills add ./some-dir`）**不会**被 `update` 更新，需要重新 `add`。
+- 项目级安装时 `.agents/skills/<name>/` 才是真正的副本，`.claude/skills/` 等 agent 目录是指向它的符号链接，所以更新一次对所有 agent 生效。
+
+### 固定版本
+
+默认跟随默认分支。想固定在某个版本，按 tag 安装：
+
+```bash
+npx skills add https://github.com/everettjf/nice-skills/tree/v0.1.0/skills/get-it-done
+```
+
+这样 `skills-lock.json` 里会多一个 `"ref": "v0.1.0"`，之后 `update` 不会把它带到新版本。
+
+版本变更记录见 [CHANGELOG.md](./CHANGELOG.md)。
+
 ## 目录结构
 
 ```
@@ -55,6 +86,11 @@ nice-skills/
 │           ├── article-template.md
 │           └── figure-plan-template.md
 ├── .claude-plugin/marketplace.json  # Claude Code 插件清单
+├── .github/workflows/
+│   └── validate-skills.yml          # 每次 PR 校验 skill 格式
+├── scripts/
+│   └── validate_skills.py           # 校验 SKILL.md 元数据、链接与代码围栏
+├── CHANGELOG.md                     # 版本变更记录
 ├── LICENSE
 └── README.md
 ```
@@ -87,8 +123,9 @@ nice-skills/
 ## 自己加一个 skill
 
 1. 新建 `skills/<skill-name>/SKILL.md`，`name` 用小写字母、数字和短横线，`description` 写清「做什么」和「什么时候用」。
-2. 内容太长就拆到 `references/`，输出模板放 `assets/`，脚本放 `scripts/`，并在 `SKILL.md` 里用相对路径引用。
+2. 内容太长就拆到 `references/`，输出模板放 `assets/`，脚本放该 skill 目录下的 `scripts/`，并在 `SKILL.md` 里用相对路径引用。
 3. 需要 Claude Code 插件安装时，把新目录加进 `.claude-plugin/marketplace.json` 的 `skills` 列表。
+4. 本地跑一遍校验：`python3 scripts/validate_skills.py`。提 PR 后 CI 会跑同一个脚本。
 
 ## License
 
