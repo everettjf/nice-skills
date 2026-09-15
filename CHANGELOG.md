@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-09-14
+
+### 变更
+
+- `write-article` 明确链接的写法：文章里的链接统一写成 `标题 : URL`（英文冒号，前后各一个空格），并新增 `references/style-guide.md` 的「链接的写法」一节。同步更新了 `SKILL.md` 的写作规则与交付要求、`references/wechat.md` 的排版细则与检查清单，以及 `assets/article-template.md` 的参考来源骨架。这条规则只管文章产出，skill 内部文件之间的相对链接不受影响。
+
 ## [0.1.1] - 2026-09-14
 
 ### 新增
@@ -25,6 +31,7 @@
 - `write-article`：写客观朴素的科普 / 描述性文章；说「写微信公众号」时按图文并茂产出配图清单、能生成的图与 AI 配图提示词。
 - `README.md`、`.claude-plugin/marketplace.json`、`.gitignore`。
 
-[Unreleased]: https://github.com/everettjf/nice-skills/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/everettjf/nice-skills/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/everettjf/nice-skills/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/everettjf/nice-skills/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/everettjf/nice-skills/releases/tag/v0.1.0
