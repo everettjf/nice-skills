@@ -16,6 +16,11 @@
 - CI：`validate-skills.yml` 增加一步跑 `bilingual-pdf-reader` 的 `selftest.py`（纯标准库，无需额外依赖）。
 - README 增加该 skill 的表格行、目录结构与说明；`.claude-plugin/marketplace.json` 的 `skills` 列表加入 `./skills/bilingual-pdf-reader`，描述改为三个 skill，版本号 0.2.0。
 
+### 变更
+
+- `get-it-done` 与 `write-article` 的 `description` 补充触发词：「搞定开发」「落地这个项目 / 计划 / 方案」「把这个需求做出来 / 实现」「写一篇微信公众号文章」「公众号推文」等；README 表格的「触发示例」同步更新。
+- 新增 `AGENTS.md`：本仓库自己的 agent 约定（改 skill 要同步 `description` 触发词、跑校验、同步 marketplace.json / README / CHANGELOG、新增 skill 流程等）。
+
 ## [0.1.2] - 2026-09-14
 
 ### 变更
