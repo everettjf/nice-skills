@@ -4,6 +4,18 @@
 
 ## [Unreleased]
 
+### 新增
+
+- `bilingual-pdf-reader`：英文 PDF → 逐段中英对照精读稿（Markdown + A4 PDF），译文下方带「生词」行（词条 + 美式音标 + 词性 + 中文释义）。含五个脚本：
+  - `scripts/extract_pdf.py`：PDF → 编号段落 Markdown；处理双栏重排、跨页页眉页脚、页码、`[12]` 角标与粘在词尾的脚注数字（`gnarled9` → `gnarled`），并把原书脚注收集到文末；行距聚类用「全文级行距 + 同一视觉行合并」，避免对话密集页被判成一段。
+  - `scripts/insert_vocab.py`：生词表 JSON 按段插入生词行，幂等（重复运行不重复插入），支持 `--clear`。
+  - `scripts/render_pdf.py`：双语 Markdown → A4 PDF，封面独立成页、中文段落细线标记、生词行、译注列表、页脚页码，中文字体按 `Songti SC → Noto Serif CJK SC → Source Han Serif` 回退。
+  - `scripts/check_bilingual.py`：交付自检——段号连续性、每段中英齐全、生词行格式与词性取值、生词是否真的出现在该段、与源 PDF 的英文词流比对（漏译 / 多译）、PDF 页数与 HTML 标签泄漏、字体内嵌。
+  - `scripts/selftest.py`：不依赖 PyMuPDF / WeasyPrint 的自测，覆盖最容易回归的纯文本逻辑（同一视觉行合并、行距聚类与切段、行尾连字符、脚注数字剥离、生词插入幂等、自检脚本的报错行为）。
+- `bilingual-pdf-reader` 的 `references/translation-style.md`（翻译与口语层次规范、难点处理、译注写法）、`references/vocab-guide.md`（收词阈值、格式、音标约定）、`assets/bilingual-template.md`（双语稿骨架）。
+- CI：`validate-skills.yml` 增加一步跑 `bilingual-pdf-reader` 的 `selftest.py`（纯标准库，无需额外依赖）。
+- README 增加该 skill 的表格行、目录结构与说明；`.claude-plugin/marketplace.json` 的 `skills` 列表加入 `./skills/bilingual-pdf-reader`，描述改为三个 skill，版本号 0.2.0。
+
 ## [0.1.2] - 2026-09-14
 
 ### 变更

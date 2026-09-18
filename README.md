@@ -8,6 +8,7 @@
 | --- | --- | --- |
 | [`get-it-done`](./skills/get-it-done/SKILL.md) | 把交办的事情真正落地：实施、本地验证、提交、开 PR，并盯 GitHub Actions 到全绿 | 「把这个事情搞定」「搞定它」「把这件事落地」「ship it」 |
 | [`write-article`](./skills/write-article/SKILL.md) | 写客观朴素的科普 / 描述性文章；说「写微信公众号」时按图文并茂产出配图 | 「写篇文章」「写篇科普」「写个介绍」「写微信公众号」 |
+| [`bilingual-pdf-reader`](./skills/bilingual-pdf-reader/SKILL.md) | 把英文 PDF 做成逐段中英对照的精读稿：译文 + 每段生词（音标、词性、释义），产出 Markdown 与 A4 PDF | 「把这篇文章翻译成中英对照」「英文 PDF 转成中英文」「加生词和音标」 |
 
 ## 安装
 
@@ -20,6 +21,7 @@ npx skills add everettjf/nice-skills
 # 只装某一个
 npx skills add everettjf/nice-skills --skill get-it-done
 npx skills add everettjf/nice-skills --skill write-article
+npx skills add everettjf/nice-skills --skill bilingual-pdf-reader
 
 # 安装到用户级目录（所有项目可用），跳过确认
 npx skills add everettjf/nice-skills -g -y
@@ -77,14 +79,27 @@ nice-skills/
 │   │   ├── SKILL.md                 # 主流程与红线
 │   │   └── references/
 │   │       └── github-pr.md         # PR、CI 排障、冲突处理命令
-│   └── write-article/
-│       ├── SKILL.md                 # 写作流程与风格底线
+│   ├── write-article/
+│   │   ├── SKILL.md                 # 写作流程与风格底线
+│   │   ├── references/
+│   │   │   ├── style-guide.md       # 词表、改写对照、来源规范
+│   │   │   └── wechat.md            # 公众号图文流程与配图
+│   │   └── assets/
+│   │       ├── article-template.md
+│   │       └── figure-plan-template.md
+│   └── bilingual-pdf-reader/
+│       ├── SKILL.md                 # 双语精读稿流程与红线
 │       ├── references/
-│       │   ├── style-guide.md       # 词表、改写对照、来源规范
-│       │   └── wechat.md            # 公众号图文流程与配图
-│       └── assets/
-│           ├── article-template.md
-│           └── figure-plan-template.md
+│       │   ├── translation-style.md # 翻译规范：忠实度、口语层次、译注
+│       │   └── vocab-guide.md       # 生词规范：收词阈值、格式、音标
+│       ├── assets/
+│       │   └── bilingual-template.md
+│       └── scripts/
+│           ├── extract_pdf.py       # PDF → 编号段落 Markdown
+│           ├── insert_vocab.py      # 生词表 JSON → 按段插入生词行
+│           ├── render_pdf.py        # 双语 Markdown → A4 PDF
+│           ├── check_bilingual.py   # 交付自检：结构 / 生词 / 英文保真 / PDF
+│           └── selftest.py          # 纯文本逻辑自测（CI 也会跑）
 ├── .claude-plugin/marketplace.json  # Claude Code 插件清单
 ├── .github/workflows/
 │   └── validate-skills.yml          # 每次 PR 校验 skill 格式
@@ -95,7 +110,7 @@ nice-skills/
 └── README.md
 ```
 
-## 关于这两个 skill
+## 关于这三个 skill
 
 ### get-it-done
 
@@ -119,6 +134,17 @@ nice-skills/
 - 严禁营销腔、空话开头结尾、无信息量的程度副词、编造引用；
 - 写作前先建「事实底稿」，写完按清单自检；
 - 说「写微信公众号」时额外产出配图清单，能用 Mermaid / SVG / matplotlib / 截图生成的图直接生成，生成不了的给中英双语提示词和占位，并附封面方案与排版细则。
+
+### bilingual-pdf-reader
+
+丢一个英文 PDF 进去，拿一份「一段英文、一段中文、下面带生词」的精读稿出来。
+
+- **逐段对照**：一段英文对一段中文，不合并、不拆分，左边看一句右边就能找到；对话仍是一句一段。
+- **生词带发音**：译文下面一行 `生词：**word** /ipa/ *n.* 释义 · …`，收录原文脚注词、词组习语、语境生僻义，每段 0–4 条。
+- **口语不洗白**：方言、市井人物、黑人英语（AAVE）译出对应的口语层次，而不是变成标准书面语。
+- **两个交付物**：可继续编辑的 Markdown，加一份封面独立、页脚带页码、中文字体内嵌的 A4 PDF。
+- **带工具链**：`extract_pdf.py`（双栏 / 页眉页脚 / 脚注清洗）、`insert_vocab.py`（幂等插入生词行）、`render_pdf.py`（排版）、`check_bilingual.py`（段号、生词格式、与源 PDF 的英文词流比对、PDF 成品检查）。
+- 版权红线写在 SKILL.md 里：受版权保护的全文只供个人学习，要公开发布时改成「导读 + 有限引文 + 解读」。
 
 ## 自己加一个 skill
 
