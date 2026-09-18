@@ -1,6 +1,6 @@
 ---
 name: get-it-done
-description: 把交办的事情真正落地成可交付、可验证的成果。当用户说「把这个事情搞定」「搞定它」「把这件事落地」「帮我做完」「做完收尾」「ship it」「get it done」「make it happen」「别问了直接做」，或要求把某个方案、需求、修复直接实施完成时使用。只要任务涉及 GitHub 仓库，就必须让 GitHub Actions 全部通过，并默认以 Pull Request 的形式交付（项目另有明确规定时遵从其规定）。
+description: 把交办的事情真正落地成可交付、可验证的成果。当用户说「把这个事情搞定」「搞定它」「搞定开发」「搞定这个功能 / 需求 / bug」「把这件事落地」「落地这个项目」「落地这个计划 / 方案」「把这个需求做出来 / 实现」「帮我做完」「做完收尾」「别问了直接做」「ship it」「get it done」「make it happen」，或要求把某个方案、需求、修复直接实施完成时使用。只要任务涉及 GitHub 仓库，就必须让 GitHub Actions 全部通过，并默认以 Pull Request 的形式交付（项目另有明确规定时遵从其规定）。
 license: MIT
 ---
 

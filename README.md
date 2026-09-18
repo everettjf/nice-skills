@@ -6,8 +6,8 @@
 
 | Skill | 作用 | 触发示例 |
 | --- | --- | --- |
-| [`get-it-done`](./skills/get-it-done/SKILL.md) | 把交办的事情真正落地：实施、本地验证、提交、开 PR，并盯 GitHub Actions 到全绿 | 「把这个事情搞定」「搞定它」「把这件事落地」「ship it」 |
-| [`write-article`](./skills/write-article/SKILL.md) | 写客观朴素的科普 / 描述性文章；说「写微信公众号」时按图文并茂产出配图 | 「写篇文章」「写篇科普」「写个介绍」「写微信公众号」 |
+| [`get-it-done`](./skills/get-it-done/SKILL.md) | 把交办的事情真正落地：实施、本地验证、提交、开 PR，并盯 GitHub Actions 到全绿 | 「把这个事情搞定」「搞定开发」「落地这个项目 / 计划」「ship it」「get it done」 |
+| [`write-article`](./skills/write-article/SKILL.md) | 写客观朴素的科普 / 描述性文章；说「写微信公众号」时按图文并茂产出配图 | 「写篇文章」「写篇科普」「写个介绍」「写一篇微信公众号文章」 |
 | [`bilingual-pdf-reader`](./skills/bilingual-pdf-reader/SKILL.md) | 把英文 PDF 做成逐段中英对照的精读稿：译文 + 每段生词（音标、词性、释义），产出 Markdown 与 A4 PDF | 「把这篇文章翻译成中英对照」「英文 PDF 转成中英文」「加生词和音标」 |
 
 ## 安装
